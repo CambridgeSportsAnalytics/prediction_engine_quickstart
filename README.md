@@ -17,7 +17,7 @@ Begin by cloning the repository to your local machine:
 Before running the examples provided in this repository check your:
 
 1. **API Credentials**: You must have valid API credentials, including an `CSA_API_KEY` and a `CSA_ACCESS_ID` provided by the CSA team to authenticate requests to the Prediction Engine. We recommend that you set these in a .env file.
-2. **Python Environment**: Simply pip install -r requirements.txt after cloning the repo. 
+2. **Python Environment**: pip install -r requirements.txt after cloning the repo. 
 
 ## Additional Notes
 
