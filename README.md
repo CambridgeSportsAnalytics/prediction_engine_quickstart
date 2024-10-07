@@ -12,7 +12,7 @@ The examples provided in this repository aim to help you understand how to const
 
 Begin by cloning the repository to your local machine:
 
-```git clone https://github.com/yourorganization/prediction_engine.git```
+```git clone https://github.com/CambridgeSportsAnalytics/prediction_engine.git```
 
 Before running the examples provided in this repository check your:
 
