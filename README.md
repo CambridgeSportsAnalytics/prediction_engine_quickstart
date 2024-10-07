@@ -22,3 +22,7 @@ Before running the examples provided in this repository check your:
 ## Additional Notes
 
 Please note that our example scripts are making  **single** prediction calls to our prediction endpoints. If you'd like to make many calls to our API more easily, unpack results automatically and integrate results fetching by default, we suggest that you pip install the prediction engine python package. 
+
+## License
+
+(c) 2023 - 2024 Cambridge Sports Analytics, LLC. All rights reserved.
