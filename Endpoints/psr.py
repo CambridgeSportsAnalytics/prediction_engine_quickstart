@@ -3,7 +3,7 @@ import json
 import requests
 
 
-# Specify the PSR model endpoint 
+# Specify the psr model endpoint 
 url = 'https://api.csanalytics.io/v2/prediction-engine/psr'
 
 # Define the headers 
@@ -49,7 +49,7 @@ response = requests.post(url, data=json_payload, headers=headers)
 # Print the response content if the request is successful
 if response.status_code == 200:
     response_body = json.loads(response.text)
-    print("Job id:", response_body['job_id']) # Job id (used to reference your prediction request)
+    print("Job id:", response_body['job_id']) # Job id used to reference your prediction request
     print("Job code:", response_body['job_code']) # Job code (used to reference your prediction request)
 else:
     print("Unsuccessful post request:", response.text, response.status_code)
