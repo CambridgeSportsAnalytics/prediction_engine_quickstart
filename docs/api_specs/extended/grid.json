@@ -113,10 +113,10 @@
       "schemas": {
         "grid_body": {
           "required": [
-            "X",
             "access_id",
-            "theta",
-            "y"
+            "y",
+            "X",
+            "theta"
           ],
           "type": "object",
           "properties": {
@@ -126,7 +126,7 @@
             },
             "y": {
               "type": "array",
-              "description": "Column vector of dependent variable.",
+              "description": "Column vector of dependent variable. [N-by-1]",
               "items": {
                 "type": "array",
                 "items": {
@@ -137,7 +137,7 @@
             },
             "X": {
               "type": "array",
-              "description": "Matrix of independent variable(s).",
+              "description": "Matrix of independent variable(s). [N-by-K]",
               "items": {
                 "type": "array",
                 "items": {
@@ -148,7 +148,7 @@
             },
             "theta": {
               "type": "array",
-              "description": "Row vector of prediction circumstances.",
+              "description": "Row vector of prediction circumstances. [1-by-K]",
               "items": {
                 "type": "array",
                 "items": {
@@ -156,6 +156,75 @@
                   "format": "float"
                 }
               }
+            },
+            "threshold_range": {
+              "type": "array",
+              "description": "Min/max range for evaluating the maxfit threshold. Specify a min/max tuple to use with stepsize to evaluate a range, or explicitly specify a vector of threshold to evaluate grid cells. [1-by-2] or [1-by-T]",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "number",
+                  "format": "float"
+                }
+              },
+              "default": [0, 0.20, 0.50, 0.80],
+              "examples": {
+                "basic": {
+                  "summary": "Min/max tuple",
+                  "value": [0, 1]
+                },
+                "detailed": {
+                  "summary": "Explicit threshold vector",
+                  "value": [0, 0.20, 0.50, 0.80]
+                }
+              }
+            },
+            "is_threshold_percent": {
+              "type": "boolean",
+              "description": "Specify whether the threshold range specified is in percentage (decimal) units.",
+              "default": true
+            },
+            "stepsize": {
+              "type": "number",
+              "description": "Step size used to evaluate the range of thresholds. A smaller step size increases grid resolution, providing more precision. This option is ignored if an explicit threshold_range is provided instead of a min/max tuple.",
+              "default": 0.20
+            },
+            "eval_type": {
+              "type": "string",
+              "description": "Specify evaluation censor type: relevance, similarity, or both.",
+              "enum": ["relevance", "similarity", "both"],
+              "default": "both"
+            },
+            "most_eval": {
+              "type": "boolean",
+              "description": "Specify the direction of the threshold evaluation on the corresponding censor type.\n\n- true: [eval_type] score > threshold\n- false: [eval_type] score < threshold",
+              "default": true
+            },
+            "attribute_combi": {
+              "type": "array",
+              "description": "Matrix of binary row vectors to indicate predictive variable choices. Each row represents a combination of variables to evaluate. If not specified, the prediction function will evaluate all possible combinations. [Q-by-K]",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              },
+              "default": null,
+              "examples": {
+                "basic": {
+                  "summary": "Evaluate one combination with only the second and third predictive variables",
+                  "value": [[0, 1, 1, 0, 0]]
+                },
+                "detailed": {
+                  "summary": "Evaluate a combination with the second and third variable, and another combination with only the fourth variable",
+                  "value": [[0, 1, 1, 0, 0], [0, 0, 0, 1, 0]]
+                }
+              }
+            },
+            "k": {
+              "type": "integer",
+              "description": "The minimum number of predictive variables to include in each combination of variables evaluated. If not specified, the default is 1.",
+              "default": 1
             }
           }
         }
