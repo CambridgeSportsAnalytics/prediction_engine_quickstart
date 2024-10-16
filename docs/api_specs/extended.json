@@ -147,6 +147,7 @@
     "components": {
         "headers": {
             "Content-Type": {
+                "in": "header",
                 "description": "The content type of the request (application/json)",
                 "schema": {
                     "type": "string",
@@ -154,6 +155,7 @@
                 }
             },
             "Connection": {
+                "in": "header",
                 "description": "Connection header value (keep-alive)",
                 "schema": {
                     "type": "string",
@@ -161,6 +163,7 @@
                 }
             },
             "x-api-key": {
+                "in": "header",
                 "description": "Your organization API key for authentication",
                 "schema": {
                     "type": "string"
@@ -223,14 +226,16 @@
                     }
                 }
             },
-            "psr_options": {
-                "type" : "object",
-                "properties": {
-                    "threshold": {
+            "threshold_option": {
+                "threshold": {
                         "type": "number",
                         "description": "Threshold to evaluate the censor function (relevance or similarity). Float or [1-by-T], if not specified then the model will evaluate across thresholds from [0, 0.99) in 0.20 increments.",
                         "default": null
-                    },
+                }
+            },
+            "psr_options": {
+                "type" : "object",
+                "properties": {
                     "is_threshold_percent": {
                         "type": "boolean",
                         "description": "Specify whether the threshold range specified is in percentage (decimal) units.",
@@ -252,11 +257,6 @@
             "maxfit_options": {
                 "type": "object",
                 "properties": {
-                    "threshold": {
-                        "type": "number",
-                        "description": "This option is excluded for maxfit.",
-                        "default": null
-                    },
                     "threshold_range": {
                         "type": "array",
                         "description": "Min/max range for evaluating the maxfit threshold. Specify a min/max tuple to use with stepsize to evaluate a range, or explicitly specify a vector of threshold to evaluate grid cells. [1-by-2] or [1-by-T]",
@@ -289,11 +289,6 @@
             "grid_options": {
                 "type": "object",
                 "properties": {
-                    "threshold": {
-                        "type": "number",
-                        "description": "This option is excluded for grid predictions",
-                        "default": null
-                    },
                     "attribute_combi": {
                         "type": "array",
                         "description": "Matrix of binary row vectors to indicate predictive variable choices. Each row represents a combination of variables to evaluate. If not specified, the prediction function will evaluate all possible combinations. [Q-by-K]",
