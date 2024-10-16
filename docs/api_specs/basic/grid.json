@@ -47,7 +47,7 @@
             {
               "name": "x-api-key",
               "in": "header",
-              "description": "Your organization API key for authentication",
+              "description": "Your organization API key for authenticating with the CSA Prediction Engine API",
               "required": true,
               "style": "simple",
               "explode": true,
