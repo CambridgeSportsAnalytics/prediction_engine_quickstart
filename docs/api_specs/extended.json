@@ -168,7 +168,7 @@
                             "schema": {
                                 "allOf" : [
                                     { "$ref": "#/components/schemas/prediction_body" },
-                                    { "$ref": "#/components/schemas/threshold_option" }
+                                    { "$ref": "#/components/schemas/threshold_option" },
                                     { "$ref": "#/components/schemas/psr_options" }
                                 ]
                             },
