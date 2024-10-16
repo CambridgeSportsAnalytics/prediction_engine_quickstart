@@ -5,11 +5,12 @@
       "description": "A robust, resilient, and flexible prediction analytics API that interacts with any dataset of predictive variables and outcomes.",
       "version": "2.0.0"
     },
-    "servers": 
-    {
-    "url": "https://api.csanalytics.io/v2/prediction-engine",
-    "description": "A robust, resilient, and flexible prediction analytics API that interacts with any dataset of predictive variables and outcomes."
-    },
+    "servers": [
+      {
+      "url": "https://api.csanalytics.io/v2/prediction-engine",
+      "description": "A robust, resilient, and flexible prediction analytics API that interacts with any dataset of predictive variables and outcomes."
+      }
+    ],
     "paths": {
       "/grid": {
         "post": {
@@ -49,7 +50,7 @@
               "description": "Your organization API key for authentication",
               "required": true,
               "style": "simple",
-              "explode": false,
+              "explode": true,
               "schema": {
                 "type": "string"
               }
@@ -74,7 +75,7 @@
           },
           "responses": {
             "200": {
-              "description": "All the devices",
+              "description": "Response body of a successful post job (grid).",
               "content": {
                 "application/json": {
                   "schema": {
