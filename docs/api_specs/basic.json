@@ -18,7 +18,7 @@
                 "tags": [
                     "predict"
                 ],
-                "description": "Basic specifications for invoking relevance-based grid predictions.",
+                "description": "Minimal specifications for invoking relevance-based grid predictions.",
                 "security": [
                     {
                         "x-api-key": []
@@ -77,7 +77,7 @@
                 "tags": [
                     "predict"
                 ],
-                "description": "Basic specifications for invoking relevance-based maxfit predictions.",
+                "description": "Minimal specifications for invoking relevance-based maxfit predictions.",
                 "security": [
                     {
                         "x-api-key": []
@@ -136,7 +136,7 @@
                 "tags": [
                     "predict"
                 ],
-                "description": "Basic specifications for invoking relevance-based partial sample regression predictions.",
+                "description": "Minimal specifications for invoking relevance-based partial sample regression predictions.",
                 "security": [
                     {
                         "x-api-key": []
