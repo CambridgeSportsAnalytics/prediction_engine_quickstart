@@ -212,6 +212,63 @@
                     }
                 ]
             }
+        },
+        "/results": {
+            "get": {
+                "tags": [
+                    "predict"
+                ],
+                "description": "Request results and insights for a prediction task.",
+                "security": [
+                    {
+                        "x-api-key": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/headers/Content-Type"
+                    },
+                    {
+                        "$ref": "#/components/headers/Connection"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "description": "Request body for psr prediction",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf" : [
+                                    { "$ref": "#/components/schemas/prediction_task_id" }
+                                ]
+                            },
+                            "example": {
+                                "job_id": "1074",
+                                "job_code": "66cfc21f7effa501"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Result object(s) of a successful prediction task.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/results" 
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-code-samples": [
+                    {
+                        "lang": "Python",
+                        "label": "Python Example",
+                        "source": "import requests\nimport json\n\nurl = \"https://api.csanalytics.io/v2/prediction-engine/psr\"\n\npayload = {\n    \"job_id\": 1074]\n    \"job_code\": \"66cfc21f7effa501\"\n}\n\nheaders = {\n  'x-api-key': 'CSA_API_KEY',\n  'Content-Type': 'application/json',\n  'Connection': 'keep-alive'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=json.dumps(payload))\n\nprint(response.text)"
+                    }
+                ]
+            }
         }
     },
     "components": {
@@ -387,6 +444,221 @@
                         "type": "integer",
                         "description": "The minimum number of predictive variables to include in each combination of variables evaluated. If not specified, the default is 1.",
                         "default": 1
+                    }
+                }
+            },
+            "results": {
+                "type": "object",
+                "properties": {
+                    "yhat": {
+                        "type": "array",
+                        "description": "Predicted value(s). [1-by-1] or [1-by-T]",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "fit": {
+                        "type": "array",
+                        "description": "Fit value [1-by-1]. Fit measures the relationship between relevance and outcomes for a prediction.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "adjusted_fit": {
+                        "type": "array",
+                        "description": "Adjusted-fit value [1-by-1]. Adjusted fit provides a measure of expected reliability for each grid cell's prediction.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "include": {
+                        "type": "array",
+                        "description": "Column vector indicating whether specific observations were included in the prediction. [N-by-1]",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "integer"
+                            }
+                        }
+                    },
+                    "weights": {
+                        "type": "array",
+                        "description": "Column vector of prediction weights for each observation [N-by-1].",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "agreement": {
+                        "type": "array",
+                        "description": "Agreement value [1-by-1]. This measure reveals whether there is alignment between relevance and outcomes across observations.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "asymmetry": {
+                        "type": "array",
+                        "description": "Measure of asymmetry [1-by-1]. This measures describes ",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "relevance": {
+                        "type": "array",
+                        "description": "Column vector of relevance scores. [N-by-1]",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "similarity": {
+                        "type": "array",
+                        "description": "Column vector of similarity scores. [N-by-1]",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "info_theta": {
+                        "type": "array",
+                        "description": "Column vector of informativeness to the circumstances. [N-by-1]",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "info_x": {
+                        "type": "array",
+                        "description": "Column vector of informativeness to the average.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "K": {
+                        "type": "array",
+                        "description": "The number of variables selected that optimizes adjusted fit. Applicable for maxfit and grid predictions.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "n": {
+                        "type": "array",
+                        "description": "Number of observations included in the prediction.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "outlier_influence": {
+                        "type": "array",
+                        "description": "Represents the influence of outliers on the model.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "r_star": {
+                        "type": "array",
+                        "description": "The threshold value that optimizes maximum fit.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "r_star_percent": {
+                        "type": "array",
+                        "description": "Contains the percentage values of the r_star metric.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "eval_type": {
+                        "type": "array",
+                        "description": "Specifies the type of censor evaluation performed. Possible values: relevance, similarity, or both.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "relevance",
+                                    "similarity",
+                                    "both"
+                                ]
+                            }
+                        }
+                    },
+                    "most_eval": {
+                        "type": "array",
+                        "description": "Boolean values indicating if the model was evaluated using the most relevant features.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "boolean"
+                            }
+                        }
+                    },
+                    "yhat_linear": {
+                        "type": "array",
+                        "description": "Linear regression prediction outcome.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
                     }
                 }
             }

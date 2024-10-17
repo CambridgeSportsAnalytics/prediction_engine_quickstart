@@ -429,17 +429,18 @@
                 "properties": {
                     "yhat": {
                         "type": "array",
-                        "description": "Contains the predicted values from the model.",
+                        "description": "Predicted value(s). [1-by-1] or [1-by-T]",
                         "items": {
                             "type": "array",
                             "items": {
-                                "type": "boolean"
+                                "type": "number",
+                                "format": "float"
                             }
                         }
                     },
                     "fit": {
                         "type": "array",
-                        "description": "Represents the goodness-of-fit metric for the model.",
+                        "description": "Fit value [1-by-1]. Fit measures the relationship between relevance and outcomes for a prediction.",
                         "items": {
                             "type": "array",
                             "items": {
@@ -450,7 +451,7 @@
                     },
                     "adjusted_fit": {
                         "type": "array",
-                        "description": "Represents the adjusted fit metric for the model.",
+                        "description": "Adjusted-fit value [1-by-1]. Adjusted fit provides a measure of expected reliability for each grid cell's prediction.",
                         "items": {
                             "type": "array",
                             "items": {
@@ -461,17 +462,18 @@
                     },
                     "include": {
                         "type": "array",
-                        "description": "Boolean values indicating whether specific features were included in the model.",
+                        "description": "Column vector indicating whether specific observations were included in the prediction. [N-by-1]",
                         "items": {
                             "type": "array",
                             "items": {
-                                "type": "boolean"
+                                "type": "number",
+                                "format": "integer"
                             }
                         }
                     },
                     "weights": {
                         "type": "array",
-                        "description": "Contains the weights assigned to each feature in the model.",
+                        "description": "Column vector of prediction weights for each observation [N-by-1].",
                         "items": {
                             "type": "array",
                             "items": {
@@ -480,120 +482,9 @@
                             }
                         }
                     },
-                    "agreement": {
+                    "variable_importance": {
                         "type": "array",
-                        "description": "Represents the level of agreement with a baseline model or reference.",
-                        "items": {
-                            "type": "array",
-                            "items": {
-                                "type": "number",
-                                "format": "float"
-                            }
-                        }
-                    },
-                    "asymmetry": {
-                        "type": "array",
-                        "description": "Contains metrics related to the asymmetry of the prediction errors.",
-                        "items": {
-                            "type": "array",
-                            "items": {
-                                "type": "number",
-                                "format": "float"
-                            }
-                        }
-                    },
-                    "relevance": {
-                        "type": "array",
-                        "description": "Contains the relevance scores for each feature.",
-                        "items": {
-                            "type": "array",
-                            "items": {
-                                "type": "number",
-                                "format": "float"
-                            }
-                        }
-                    },
-                    "info_theta": {
-                        "type": "array",
-                        "description": "Contains information related to the model's theta parameters.",
-                        "items": {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        }
-                    },
-                    "similarity": {
-                        "type": "array",
-                        "description": "Contains similarity scores between instances or clusters.",
-                        "items": {
-                            "type": "array",
-                            "items": {
-                                "type": "number",
-                                "format": "float"
-                            }
-                        }
-                    },
-                    "K": {
-                        "type": "array",
-                        "description": "Contains the number of clusters or groups identified.",
-                        "items": {
-                            "type": "array",
-                            "items": {
-                                "type": "integer"
-                            }
-                        }
-                    },
-                    "n": {
-                        "type": "array",
-                        "description": "Represents the number of observations or instances.",
-                        "items": {
-                            "type": "array",
-                            "items": {
-                                "type": "integer"
-                            }
-                        }
-                    },
-                    "phi": {
-                        "type": "array",
-                        "description": "Contains the estimated parameter values for the model.",
-                        "items": {
-                            "type": "array",
-                            "items": {
-                                "type": "number",
-                                "format": "float"
-                            }
-                        }
-                    },
-                    "rho": {
-                        "type": "number",
-                        "description": "Contains the correlation coefficients for the features.",
-                        "format": "float"
-                    },
-                    "info_x": {
-                        "type": "array",
-                        "description": "Contains additional information related to the features used in the model.",
-                        "items": {
-                            "type": "array",
-                            "items": {
-                                "type": "string"
-                            }
-                        }
-                    },
-                    "r_star": {
-                        "type": "array",
-                        "description": "Represents a specific model evaluation metric.",
-                        "items": {
-                            "type": "array",
-                            "items": {
-                                "type": "number",
-                                "format": "float"
-                            }
-                        }
-                    },
-                    "y_linear": {
-                        "type": "array",
-                        "description": "Contains the linear prediction values from the model.",
+                        "description": "Row vector of variable importance. [1-by-K]",
                         "items": {
                             "type": "array",
                             "items": {
@@ -604,7 +495,7 @@
                     },
                     "eval_type": {
                         "type": "array",
-                        "description": "Specifies the type of evaluation performed. Possible values: relevance, similarity, or both.",
+                        "description": "Specifies the type of censor evaluation performed. Possible values: relevance, similarity, or both.",
                         "items": {
                             "type": "array",
                             "items": {
@@ -614,17 +505,6 @@
                                     "similarity",
                                     "both"
                                 ]
-                            }
-                        }
-                    },
-                    "lambda_sq": {
-                        "type": "array",
-                        "description": "Contains the lambda squared values for regularization.",
-                        "items": {
-                            "type": "array",
-                            "items": {
-                                "type": "number",
-                                "format": "float"
                             }
                         }
                     },
@@ -638,42 +518,9 @@
                             }
                         }
                     },
-                    "max_attributes": {
+                    "yhat_linear": {
                         "type": "array",
-                        "description": "Contains the maximum values for each attribute.",
-                        "items": {
-                            "type": "array",
-                            "items": {
-                                "type": "number",
-                                "format": "float"
-                            }
-                        }
-                    },
-                    "r_star_percent": {
-                        "type": "array",
-                        "description": "Contains the percentage values of the r_star metric.",
-                        "items": {
-                            "type": "array",
-                            "items": {
-                                "type": "number",
-                                "format": "float"
-                            }
-                        }
-                    },
-                    "weights_excluded": {
-                        "type": "array",
-                        "description": "Contains the weights for features that were excluded from the model.",
-                        "items": {
-                            "type": "array",
-                            "items": {
-                                "type": "number",
-                                "format": "float"
-                            }
-                        }
-                    },
-                    "outlier_influence": {
-                        "type": "array",
-                        "description": "Represents the influence of outliers on the model.",
+                        "description": "Linear regression prediction outcome.",
                         "items": {
                             "type": "array",
                             "items": {
