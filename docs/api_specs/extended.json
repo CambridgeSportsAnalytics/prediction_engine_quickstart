@@ -19,15 +19,17 @@
                     "predict"
                 ],
                 "description": "Extended specifications for invoking relevance-based grid predictions.",
+                "security": [
+                    {
+                        "x-api-key": []
+                    }
+                ],
                 "parameters": [
                     {
                         "$ref": "#/components/headers/Content-Type"
                     },
                     {
                         "$ref": "#/components/headers/Connection"
-                    },
-                    {
-                        "$ref": "#/components/headers/x-api-key"
                     }
                 ],
                 "requestBody": {
@@ -86,15 +88,17 @@
                     "predict"
                 ],
                 "description": "Extended specifications for invoking relevance-based maxfit predictions.",
+                "security": [
+                    {
+                        "x-api-key": []
+                    }
+                ],
                 "parameters": [
                     {
                         "$ref": "#/components/headers/Content-Type"
                     },
                     {
                         "$ref": "#/components/headers/Connection"
-                    },
-                    {
-                        "$ref": "#/components/headers/x-api-key"
                     }
                 ],
                 "requestBody": {
@@ -139,7 +143,7 @@
                     {
                         "lang": "Python",
                         "label": "Python Example",
-                        "source": "import requests\nimport json\n\nurl = \"https://api.csanalytics.io/v2/prediction-engine/maxfit\"\n\npayload = {\n    \"y\": [[18.8], [2.3], [3.0], [6.7], [15.2], [20.9], [4.0], [2.4], [9.7], [8.8], [13.4], [8.4], [2.9], [2.7], [23.0], [8.0], [12.0], [10.3], [6.8], [7.1], [6.7], [12.3], [5.7], [2.5], [30.1], [5.4], [11.5], [9.9], [4.0], [3.6], [1.8], [11.0], [7.1], [11.5], [27.0], [5.4], [2.5], [28.9], [1.3], [7.3], [19.4], [8.6], [7.5], [17.4], [1.5], [15.9], [12.1], [20.3], [6.7]],\n    \"X\": [[25.0, 2.0, 76.0, 53.7, 23.1], [29.0, 1.0, 78.0, 39.1, 5.7], [32.0, 2.0, 77.0, 54.1, 5.3], [30.0, 5.0, 82.0, 68.7, 8.7], [24.0, 1.0, 69.0, 51.0, 20.3], [25.0, 2.0, 79.0, 50.2, 20.0]],\n    \"theta\": [[24.0, 5.0, 81.0, 60.0, 11.0], [29.0, 3.0, 80.0, 46.4, 3.5], [25.0, 5.0, 81.0, 42.9, 1.3], [25.0, 4.0, 80.0, 55.2, 26.9]],\n    \"threshold_range\": [0, 0.20, 0.50, 0.80],\n    \"is_threshold_percent\": true,\n    \"most_eval\": true,\n    \"eval_type\": \"both\",\n    \"stepsize\": 0.2,\n}\n\nheaders = {\n  'x-api-key': 'CSA_API_KEY',\n  'Content-Type': 'application/json',\n  'Connection': 'keep-alive'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=json.dumps(payload))\n\nprint(response.text)"
+                        "source": "import requests\nimport json\n\nurl = \"https://api.csanalytics.io/v2/prediction-engine/maxfit\"\n\npayload = {\n    \"y\": [[18.8], [2.3], [3.0], [6.7], [15.2], [20.9], [4.0], [2.4], [9.7], [8.8], [13.4], [8.4], [2.9], [2.7], [23.0], [8.0], [12.0], [10.3], [6.8], [7.1], [6.7], [12.3], [5.7], [2.5], [30.1], [5.4], [11.5], [9.9], [4.0], [3.6], [1.8], [11.0], [7.1], [11.5], [27.0], [5.4], [2.5], [28.9], [1.3], [7.3], [19.4], [8.6], [7.5], [17.4], [1.5], [15.9], [12.1], [20.3], [6.7]],\n    \"X\": [[25.0, 2.0, 76.0, 53.7, 23.1], [29.0, 1.0, 78.0, 39.1, 5.7], [32.0, 2.0, 77.0, 54.1, 5.3], [30.0, 5.0, 82.0, 68.7, 8.7], [24.0, 1.0, 69.0, 51.0, 20.3], [25.0, 2.0, 79.0, 50.2, 20.0]],\n    \"theta\": [[24.0, 5.0, 81.0, 60.0, 11.0], [29.0, 3.0, 80.0, 46.4, 3.5], [25.0, 5.0, 81.0, 42.9, 1.3], [25.0, 4.0, 80.0, 55.2, 26.9]],\n    \"threshold_range\": [0, 0.20, 0.50, 0.80],\n    \"is_threshold_percent\": true,\n    \"most_eval\": true,\n    \"eval_type\": \"both\",\n    \"stepsize\": 0.2\n}\n\nheaders = {\n  'x-api-key': 'CSA_API_KEY',\n  'Content-Type': 'application/json',\n  'Connection': 'keep-alive'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=json.dumps(payload))\n\nprint(response.text)"
                     }
                 ]
             }
@@ -150,15 +154,17 @@
                     "predict"
                 ],
                 "description": "Extended specifications for invoking relevance-based partial sample regression predictions.",
+                "security": [
+                    {
+                        "x-api-key": []
+                    }
+                ],
                 "parameters": [
                     {
                         "$ref": "#/components/headers/Content-Type"
                     },
                     {
                         "$ref": "#/components/headers/Connection"
-                    },
-                    {
-                        "$ref": "#/components/headers/x-api-key"
                     }
                 ],
                 "requestBody": {
@@ -202,7 +208,7 @@
                     {
                         "lang": "Python",
                         "label": "Python Example",
-                        "source": "import requests\nimport json\n\nurl = \"https://api.csanalytics.io/v2/prediction-engine/psr\"\n\npayload = {\n    \"y\": [[18.8], [2.3], [3.0], [6.7], [15.2], [20.9], [4.0], [2.4], [9.7], [8.8], [13.4], [8.4], [2.9], [2.7], [23.0], [8.0], [12.0], [10.3], [6.8], [7.1], [6.7], [12.3], [5.7], [2.5], [30.1], [5.4], [11.5], [9.9], [4.0], [3.6], [1.8], [11.0], [7.1], [11.5], [27.0], [5.4], [2.5], [28.9], [1.3], [7.3], [19.4], [8.6], [7.5], [17.4], [1.5], [15.9], [12.1], [20.3], [6.7]],\n    \"X\": [[25.0, 2.0, 76.0, 53.7, 23.1], [29.0, 1.0, 78.0, 39.1, 5.7], [32.0, 2.0, 77.0, 54.1, 5.3], [30.0, 5.0, 82.0, 68.7, 8.7], [24.0, 1.0, 69.0, 51.0, 20.3], [25.0, 2.0, 79.0, 50.2, 20.0]],\n    \"theta\": [[24.0, 5.0, 81.0, 60.0, 11.0], [29.0, 3.0, 80.0, 46.4, 3.5], [25.0, 5.0, 81.0, 42.9, 1.3], [25.0, 4.0, 80.0, 55.2, 26.9]],\n    \"threshold\": 0.50,\n    \"is_threshold_percent\": true,\n    \"most_eval\": true,\n    \"eval_type\": \"both\",\n}\n\nheaders = {\n  'x-api-key': 'CSA_API_KEY',\n  'Content-Type': 'application/json',\n  'Connection': 'keep-alive'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=json.dumps(payload))\n\nprint(response.text)"
+                        "source": "import requests\nimport json\n\nurl = \"https://api.csanalytics.io/v2/prediction-engine/psr\"\n\npayload = {\n    \"y\": [[18.8], [2.3], [3.0], [6.7], [15.2], [20.9], [4.0], [2.4], [9.7], [8.8], [13.4], [8.4], [2.9], [2.7], [23.0], [8.0], [12.0], [10.3], [6.8], [7.1], [6.7], [12.3], [5.7], [2.5], [30.1], [5.4], [11.5], [9.9], [4.0], [3.6], [1.8], [11.0], [7.1], [11.5], [27.0], [5.4], [2.5], [28.9], [1.3], [7.3], [19.4], [8.6], [7.5], [17.4], [1.5], [15.9], [12.1], [20.3], [6.7]],\n    \"X\": [[25.0, 2.0, 76.0, 53.7, 23.1], [29.0, 1.0, 78.0, 39.1, 5.7], [32.0, 2.0, 77.0, 54.1, 5.3], [30.0, 5.0, 82.0, 68.7, 8.7], [24.0, 1.0, 69.0, 51.0, 20.3], [25.0, 2.0, 79.0, 50.2, 20.0]],\n    \"theta\": [[24.0, 5.0, 81.0, 60.0, 11.0], [29.0, 3.0, 80.0, 46.4, 3.5], [25.0, 5.0, 81.0, 42.9, 1.3], [25.0, 4.0, 80.0, 55.2, 26.9]],\n    \"threshold\": 0.50,\n    \"is_threshold_percent\": true,\n    \"most_eval\": true,\n    \"eval_type\": \"both\"\n}\n\nheaders = {\n  'x-api-key': 'CSA_API_KEY',\n  'Content-Type': 'application/json',\n  'Connection': 'keep-alive'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=json.dumps(payload))\n\nprint(response.text)"
                     }
                 ]
             }
@@ -210,7 +216,7 @@
     },
     "components": {
         "securitySchemes": {
-            "api_key": {
+            "x_api_key": {
                 "type": "apiKey",
                 "name": "x-api-key",
                 "in": "header",
