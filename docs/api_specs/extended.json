@@ -301,7 +301,7 @@
             }
         },
         "schemas": {
-            "prediction_response": {
+            "prediction_task_id": {
                 "type": "object",
                 "properties": {
                     "job_id": { "type": "integer", "description": "Job ID" },
