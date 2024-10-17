@@ -225,6 +225,7 @@
         },
         "headers": {
             "Content-Type": {
+                "name": "Content-Type",
                 "in": "header",
                 "description": "The content type of the request (application/json)",
                 "schema": {
@@ -233,6 +234,7 @@
                 }
             },
             "Connection": {
+                "name": "Connection",
                 "in": "header",
                 "description": "Connection header value (keep-alive)",
                 "schema": {
