@@ -292,10 +292,13 @@
                 }
             },
             "threshold_option": {
-                "threshold": {
-                        "type": "number",
-                        "description": "Threshold to evaluate the censor function (relevance or similarity). Float or [1-by-T], if not specified then the model will evaluate across thresholds from [0, 0.99) in 0.20 increments.",
-                        "default": null
+                "type": "object",
+                "properties": {
+                    "threshold": {
+                            "type": "number",
+                            "description": "Threshold to evaluate the censor function (relevance or similarity). Float or [1-by-T], if not specified then the model will evaluate across thresholds from [0, 0.99) in 0.20 increments.",
+                            "default": null
+                    }
                 }
             },
             "psr_options": {
@@ -324,13 +327,10 @@
                 "properties": {
                     "threshold_range": {
                         "type": "array",
-                        "description": "Min/max range for evaluating the maxfit threshold. Specify a min/max tuple to use with stepsize to evaluate a range, or explicitly specify a vector of threshold to evaluate grid cells. [1-by-2] or [1-by-T]",
+                        "description": "Min/max range for evaluating the maxfit threshold. Specify a min/max tuple or explicitly specify a vector of thresholds. [1-by-2] or [1-by-T]",
                         "items": {
-                            "type": "array",
-                            "items": {
-                                "type": "number",
-                                "format": "float"
-                            }
+                            "type": "number",
+                            "format": "float"
                         },
                         "default": [0, 0.20, 0.50, 0.80],
                         "examples": {
