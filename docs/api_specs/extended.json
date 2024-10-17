@@ -11,11 +11,12 @@
             "description": "A robust, resilient, and flexible prediction analytics API that interacts with any dataset of predictive variables and outcomes."
         }
     ],
+    "x-hideTryItPanel": true,
     "paths": {
         "/grid": {
             "post": {
                 "tags": [
-                    "grid"
+                    "predict"
                 ],
                 "description": "Extended specifications for invoking relevance-based grid predictions.",
                 "parameters": [
@@ -82,7 +83,7 @@
         "/maxfit": {
             "post": {
                 "tags": [
-                    "maxfit"
+                    "predict"
                 ],
                 "description": "Extended specifications for invoking relevance-based maxfit predictions.",
                 "parameters": [
@@ -146,7 +147,7 @@
         "/psr": {
             "post": {
                 "tags": [
-                    "maxfit"
+                    "predict"
                 ],
                 "description": "Extended specifications for invoking relevance-based partial sample regression predictions.",
                 "parameters": [
@@ -208,6 +209,14 @@
         }
     },
     "components": {
+        "securitySchemes": {
+            "api_key": {
+                "type": "apiKey",
+                "name": "x-api-key",
+                "in": "header",
+                "description": "API key required to access the CSA Prediction Engine API"
+            }
+        },
         "headers": {
             "Content-Type": {
                 "in": "header",
@@ -223,13 +232,6 @@
                 "schema": {
                     "type": "string",
                     "example": "keep-alive"
-                }
-            },
-            "x-api-key": {
-                "in": "header",
-                "description": "Your organization API key for authentication",
-                "schema": {
-                    "type": "string"
                 }
             }
         },
