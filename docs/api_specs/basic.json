@@ -57,7 +57,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/prediction_response" 
+                                    "$ref": "#/components/schemas/prediction_task_id" 
                                 }
                             }
                         }
@@ -116,7 +116,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/prediction_response" 
+                                    "$ref": "#/components/schemas/prediction_task_id" 
                                 }
                             }
                         }
@@ -175,7 +175,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/prediction_response" 
+                                    "$ref": "#/components/schemas/prediction_task_id" 
                                 }
                             }
                         }
@@ -186,6 +186,63 @@
                         "lang": "Python",
                         "label": "Python Example",
                         "source": "import requests\nimport json\n\nurl = \"https://api.csanalytics.io/v2/prediction-engine/psr\"\n\npayload = {\n    \"y\": [[18.8], [2.3], [3.0], [6.7], [15.2], [20.9], [4.0], [2.4], [9.7], [8.8], [13.4], [8.4], [2.9], [2.7], [23.0], [8.0], [12.0], [10.3], [6.8], [7.1], [6.7], [12.3], [5.7], [2.5], [30.1], [5.4], [11.5], [9.9], [4.0], [3.6], [1.8], [11.0], [7.1], [11.5], [27.0], [5.4], [2.5], [28.9], [1.3], [7.3], [19.4], [8.6], [7.5], [17.4], [1.5], [15.9], [12.1], [20.3], [6.7]],\n    \"X\": [[25.0, 2.0, 76.0, 53.7, 23.1], [29.0, 1.0, 78.0, 39.1, 5.7], [32.0, 2.0, 77.0, 54.1, 5.3], [30.0, 5.0, 82.0, 68.7, 8.7], [24.0, 1.0, 69.0, 51.0, 20.3], [25.0, 2.0, 79.0, 50.2, 20.0]],\n    \"theta\": [[24.0, 5.0, 81.0, 60.0, 11.0]]\n}\n\nheaders = {\n  'x-api-key': 'CSA_API_KEY',\n  'Content-Type': 'application/json',\n  'Connection': 'keep-alive'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=json.dumps(payload))\n\nprint(response.text)"
+                    }
+                ]
+            }
+        },
+        "/results": {
+            "get": {
+                "tags": [
+                    "predict"
+                ],
+                "description": "Request results and insights for a prediction task.",
+                "security": [
+                    {
+                        "x-api-key": []
+                    }
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/components/headers/Content-Type"
+                    },
+                    {
+                        "$ref": "#/components/headers/Connection"
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "description": "Request body for psr prediction",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "allOf" : [
+                                    { "$ref": "#/components/schemas/prediction_task_id" }
+                                ]
+                            },
+                            "example": {
+                                "job_id": "1074",
+                                "job_code": "66cfc21f7effa501"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Result object(s) of a successful prediction task.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/results" 
+                                }
+                            }
+                        }
+                    }
+                },
+                "x-code-samples": [
+                    {
+                        "lang": "Python",
+                        "label": "Python Example",
+                        "source": "import requests\nimport json\n\nurl = \"https://api.csanalytics.io/v2/prediction-engine/psr\"\n\npayload = {\n    \"job_id\": 1074]\n    \"job_code\": \"66cfc21f7effa501\"\n}\n\nheaders = {\n  'x-api-key': 'CSA_API_KEY',\n  'Content-Type': 'application/json',\n  'Connection': 'keep-alive'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=json.dumps(payload))\n\nprint(response.text)"
                     }
                 ]
             }
@@ -221,11 +278,11 @@
             }
         },
         "schemas": {
-            "prediction_response": {
+            "prediction_task_id": {
                 "type": "object",
                 "properties": {
-                    "job_id": { "type": "integer", "description": "Job ID" },
-                    "job_code": { "type": "string", "description": "Job code" }
+                    "job_id": { "type": "integer", "description": "Prediction task job ID" },
+                    "job_code": { "type": "string", "description": "Prediction task job code" }
                 }
             },
             "prediction_body": {
@@ -364,6 +421,266 @@
                         "type": "integer",
                         "description": "The minimum number of predictive variables to include in each combination of variables evaluated. If not specified, the default is 1.",
                         "default": 1
+                    }
+                }
+            },
+            "results": {
+                "type": "object",
+                "properties": {
+                    "yhat": {
+                        "type": "array",
+                        "description": "Contains the predicted values from the model.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "boolean"
+                            }
+                        }
+                    },
+                    "fit": {
+                        "type": "array",
+                        "description": "Represents the goodness-of-fit metric for the model.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "adjusted_fit": {
+                        "type": "array",
+                        "description": "Represents the adjusted fit metric for the model.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "include": {
+                        "type": "array",
+                        "description": "Boolean values indicating whether specific features were included in the model.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "boolean"
+                            }
+                        }
+                    },
+                    "weights": {
+                        "type": "array",
+                        "description": "Contains the weights assigned to each feature in the model.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "agreement": {
+                        "type": "array",
+                        "description": "Represents the level of agreement with a baseline model or reference.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "asymmetry": {
+                        "type": "array",
+                        "description": "Contains metrics related to the asymmetry of the prediction errors.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "relevance": {
+                        "type": "array",
+                        "description": "Contains the relevance scores for each feature.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "info_theta": {
+                        "type": "array",
+                        "description": "Contains information related to the model's theta parameters.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "similarity": {
+                        "type": "array",
+                        "description": "Contains similarity scores between instances or clusters.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "K": {
+                        "type": "array",
+                        "description": "Contains the number of clusters or groups identified.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "n": {
+                        "type": "array",
+                        "description": "Represents the number of observations or instances.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "integer"
+                            }
+                        }
+                    },
+                    "phi": {
+                        "type": "array",
+                        "description": "Contains the estimated parameter values for the model.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "rho": {
+                        "type": "number",
+                        "description": "Contains the correlation coefficients for the features.",
+                        "format": "float"
+                    },
+                    "info_x": {
+                        "type": "array",
+                        "description": "Contains additional information related to the features used in the model.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "r_star": {
+                        "type": "array",
+                        "description": "Represents a specific model evaluation metric.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "y_linear": {
+                        "type": "array",
+                        "description": "Contains the linear prediction values from the model.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "eval_type": {
+                        "type": "array",
+                        "description": "Specifies the type of evaluation performed. Possible values: relevance, similarity, or both.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "relevance",
+                                    "similarity",
+                                    "both"
+                                ]
+                            }
+                        }
+                    },
+                    "lambda_sq": {
+                        "type": "array",
+                        "description": "Contains the lambda squared values for regularization.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "most_eval": {
+                        "type": "array",
+                        "description": "Boolean values indicating if the model was evaluated using the most relevant features.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "boolean"
+                            }
+                        }
+                    },
+                    "max_attributes": {
+                        "type": "array",
+                        "description": "Contains the maximum values for each attribute.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "r_star_percent": {
+                        "type": "array",
+                        "description": "Contains the percentage values of the r_star metric.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "weights_excluded": {
+                        "type": "array",
+                        "description": "Contains the weights for features that were excluded from the model.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "outlier_influence": {
+                        "type": "array",
+                        "description": "Represents the influence of outliers on the model.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
                     }
                 }
             }
