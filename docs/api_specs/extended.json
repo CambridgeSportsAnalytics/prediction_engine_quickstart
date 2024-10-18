@@ -258,13 +258,11 @@
                                     "$ref": "#/components/schemas/results" 
                                 }
                             },
-                            "examples":{
-                                "example1": {
-                                    "summary": "Example of a successful response",
-                                    "value": { 
-                                        "yhat": "111",
-                                        "fit": 0.75
-                                    }
+                            "example":{
+                                "summary": "Example of a successful response",
+                                "value": { 
+                                    "yhat": "111",
+                                    "fit": 0.75
                                 }
                             }
                         }
