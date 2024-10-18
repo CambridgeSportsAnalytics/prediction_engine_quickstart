@@ -177,6 +177,10 @@
                                 "schema": {
                                     "$ref": "#/components/schemas/prediction_task_id" 
                                 }
+                            },
+                            "example": {
+                                "job_id": "1074",
+                                "job_code": "66cfc21f7effa501"
                             }
                         }
                     }
