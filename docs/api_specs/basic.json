@@ -171,7 +171,7 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Response body of a successful post job (psr).",
+                        "description": "The response body returns a job id and job code.",
                         "content": {
                             "application/json": {
                                 "schema": {
