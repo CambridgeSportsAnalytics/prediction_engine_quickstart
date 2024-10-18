@@ -67,7 +67,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/prediction_response" 
+                                    "$ref": "#/components/schemas/prediction_task_id" 
                                 }
                             }
                         }
@@ -133,7 +133,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/prediction_response" 
+                                    "$ref": "#/components/schemas/prediction_task_id" 
                                 }
                             }
                         }
@@ -198,7 +198,7 @@
                         "content": {
                             "application/json": {
                                 "schema": {
-                                    "$ref": "#/components/schemas/prediction_response" 
+                                    "$ref": "#/components/schemas/prediction_task_id" 
                                 }
                             }
                         }
