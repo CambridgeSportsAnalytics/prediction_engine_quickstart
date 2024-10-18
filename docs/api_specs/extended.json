@@ -257,7 +257,7 @@
                                 "schema": {
                                     "$ref": "#/components/schemas/results" 
                                 }
-                            }
+                            },
                             "examples":{
                                 "example1": {
                                     "summary": "Example of a successful response",
