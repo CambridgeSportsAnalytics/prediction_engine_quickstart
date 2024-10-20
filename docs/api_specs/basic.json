@@ -285,8 +285,9 @@
             "prediction_task_id": {
                 "type": "object",
                 "properties": {
-                    "job_id": { "type": "integer", "description": "Prediction task job ID" },
-                    "job_code": { "type": "string", "description": "Prediction task job code" }
+                    "job_code": { "type": "string", "description": "Prediction task job code" },
+                    "job_id": { "type": "integer", "description": "Prediction task job ID" }
+                    
                 }
             },
             "prediction_body": {
