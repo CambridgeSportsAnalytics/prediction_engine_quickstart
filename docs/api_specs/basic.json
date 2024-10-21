@@ -224,7 +224,7 @@
                     {
                         "lang": "Python",
                         "label": "Python Example",
-                        "source": "import requests\nimport json\n\nurl = \"https://api.csanalytics.io/v2/prediction-engine/psr\"\n\npayload = {\n    \"job_id\": 1074]\n    \"job_code\": \"66cfc21f7effa501\"\n}\n\nheaders = {\n  'x-api-key': 'CSA_API_KEY',\n  'Content-Type': 'application/json',\n  'Connection': 'keep-alive'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=json.dumps(payload))\n\nprint(response.text)"
+                        "source": "import requests\nimport json\n\nurl = \"https://api.csanalytics.io/v2/prediction-engine/psr\"\n\npayload = {\n    \"job_id\": 1074\n    \"job_code\": \"66cfc21f7effa501\"\n}\n\nheaders = {\n  'x-api-key': 'CSA_API_KEY',\n  'Content-Type': 'application/json',\n  'Connection': 'keep-alive'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=json.dumps(payload))\n\nprint(response.text)"
                     }
                 ]
             }
@@ -433,7 +433,7 @@
                                 "format": "float"
                             }
                         },
-                        "example": "[[0.293730]]"
+                        "example": "[[1.057741]]"
                     },
                     "include": {
                         "type": "array",
@@ -441,10 +441,10 @@
                         "items": {
                             "type": "array",
                             "items": {
-                                "type": "boolean"
+                                "type": "integer"
                             }
                         },
-                        "example": "[[true], [false], [true], [true], [false], [true], [true]]"
+                        "example": [[1], [0], [1], [1], [0], [1], [1]]
                     },
                     "weights": {
                         "type": "array",
@@ -456,7 +456,7 @@
                                 "format": "float"
                             }
                         },
-                        "example": "[[0.175627], [0.168668], [0.087879], [0.135165], [0.148314], [0.036970], [0.247376]]"
+                        "example": [[-0.191071], [0.229452], [-0.268879], [1.171929], [-0.046778], [-0.024025], [0.129372]]
                     },
                     "variable_importance": {
                         "type": "array",
@@ -468,7 +468,7 @@
                                 "format": "float"
                             }
                         },
-                        "example": "[[-0.017385, 0.047426, 0.026412, 0.000592, 0.067151]]"
+                        "example": [0.326091, 0.098205, 0.205904, 0.189534, 0.187681]
                     },
                     "eval_type": {
                         "type": "array",
@@ -495,7 +495,7 @@
                                 "type": "boolean"
                             }
                         },
-                        "example": "[[true]]"
+                        "example": [[true]]
                     },
                     "yhat_linear": {
                         "type": "array",
@@ -507,7 +507,7 @@
                                 "format": "float"
                             }
                         },
-                        "example": "[[11.428096]]"
+                        "example": "[[7.145171]]"
                     }
                 }
             }
