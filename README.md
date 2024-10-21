@@ -6,6 +6,7 @@ The examples provided in this repository aim to help you understand how to const
 
 ## Contents
 
+- [docs/api_scecs](docs/api_specs): This folder contains OpenAPI 3.0 specifications for the the available API endpoints. 
 - [end_points](end_points): This folder contains code examples for each of the available API endpoints, showing how to make HTTPS requests and receive responses from the Prediction Engine API in Python. 
 
 ## Using This Repository
