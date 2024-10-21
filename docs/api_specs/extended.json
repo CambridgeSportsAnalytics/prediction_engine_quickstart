@@ -589,7 +589,7 @@
                                 "format": "float"
                             }
                         },
-                        "example" [[0.8]]
+                        "example": [[0.8]]
                     },
                     "eval_type": {
                         "type": "array",
