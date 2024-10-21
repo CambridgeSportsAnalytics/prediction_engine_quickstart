@@ -409,7 +409,7 @@
                                 "format": "float"
                             }
                         },
-                        "example": "[[8.995837]]"
+                        "example": [[3.285239]]
                     },
                     "fit": {
                         "type": "array",
@@ -421,7 +421,7 @@
                                 "format": "float"
                             }
                         },
-                        "example": "[[0.078542]]"
+                        "example": [[0.087690]]
                     },
                     "adjusted_fit": {
                         "type": "array",
@@ -433,7 +433,7 @@
                                 "format": "float"
                             }
                         },
-                        "example": "[[1.057741]]"
+                        "example": [[1.057741]]
                     },
                     "include": {
                         "type": "array",
