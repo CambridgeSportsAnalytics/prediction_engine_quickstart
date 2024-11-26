@@ -227,7 +227,7 @@
                     {
                         "lang": "Python",
                         "label": "Python Example",
-                        "source": "import requests\nimport json\n\nurl = \"https://api.csanalytics.io/v2/prediction-engine/psr\"\n\npayload = {\n    \"job_id\": 1074]\n    \"job_code\": \"66cfc21f7effa501\"\n}\n\nheaders = {\n  'x-api-key': 'CSA_API_KEY',\n  'Content-Type': 'application/json',\n  'Connection': 'keep-alive'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=json.dumps(payload))\n\nprint(response.text)"
+                        "source": "import requests\nimport json\n\nurl = \"https://api.csanalytics.io/v2/prediction-engine/psr\"\n\npayload = {\n    \"job_id\": 1074]\n    \"job_code\": \"66cfc21f7effa501\"\n}\n\nheaders = {\n  'x-api-key': 'CSA_API_KEY',\n  'Content-Type': 'application/json',\n  'Connection': 'keep-alive'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=json.dumps(payload))\n\nprint(response.text)"
                     }
                 ]
             }
