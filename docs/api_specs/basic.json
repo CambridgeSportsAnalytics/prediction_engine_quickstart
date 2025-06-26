@@ -435,6 +435,18 @@
                         },
                         "example": [[1.057741]]
                     },
+                    "kfit": {
+                        "type": "array",
+                        "description": "k-fit value [1-by-1]. k-fit measures the relationship between relevance and outcomes for a prediction, adjusted for the number of variables in the model.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        },
+                        "example": [[0.087690]]
+                    },
                     "include": {
                         "type": "array",
                         "description": "Column vector indicating whether specific observations were included in the prediction. [N-by-1]",
@@ -460,7 +472,7 @@
                     },
                     "variable_importance": {
                         "type": "array",
-                        "description": "Row vector of variable importance. [1-by-K]",
+                        "description": "Row vector of variable importance on conviction (fit, adjusted_fit, or kfit). [1-by-K]",
                         "items": {
                             "type": "array",
                             "items": {
@@ -469,6 +481,18 @@
                             }
                         },
                         "example": [0.326091, 0.098205, 0.205904, 0.189534, 0.187681]
+                    },
+                    "variable_importance_on_yhat": {
+                        "type": "array",
+                        "description": "Row vector of variable importance on outcomes (y_hat). [1-by-K]",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        },
+                        "example": [0.188679, 0.232704, 0.194969, 0.308176, 0.075472]
                     },
                     "eval_type": {
                         "type": "array",
