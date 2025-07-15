@@ -87,10 +87,15 @@ The provided examples focus on single-call predictions for clarity and simplicit
 pip install csa-prediction-engine
 ```
 
+## 📖 Documentation
+- 📘 [CSA Prediction Engine Overview](https://docs.csanalytics.io)
+- 🐍 [CSA Python API Client Docs](https://docs.csanalytics.io/python-api-package/api-client)
+- ⚙️ [Prediction Options Reference](https://docs.csanalytics.io/python-api-package/csa-common-lib/prediction-options)
+ 
 ## 📬 Support
 
-Questions or issues? 📧 support@csanalytics.io
+Questions or issues? Please reach out to us 📧 support@csanalytics.io
 
 ## License
 
-(c) 2023 - 2025 Cambridge Sports Analytics, LLC. All rights reserved.
+(c) 2023 - 2025 Cambridge Prediction Analytics, LLC. All rights reserved.
