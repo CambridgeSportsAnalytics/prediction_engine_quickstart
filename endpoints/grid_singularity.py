@@ -4,7 +4,7 @@ import requests
 
 
 # Specify the Grid Singularity model endpoint 
-url = 'https://api.csanalytics.io/v2/prediction-engine/grid_singularity'
+url = 'https://api.csanalytics.io/v2/prediction-engine/grid-singularity'
 
 # Define the headers 
 headers= {

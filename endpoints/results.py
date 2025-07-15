@@ -4,7 +4,7 @@ import requests
 
 
 # Specify the PSR model endpoint 
-url = 'https://api.csanalytics.io/v2/results'
+url = 'https://api.csanalytics.io/v2/prediction-engine/results'
 
 # Define the headers 
 headers= {
@@ -15,8 +15,8 @@ headers= {
         
 # Construct input payload
 payload = {
-            "job_id": 9433,
-            "job_code": "f020dba22ca42e0f"
+            "job_id": 48412, # Enter your job id (returned by a prediction call)
+            "job_code": "a073bf7cce273e33" # Enter your job code (returned by a prediction call)
           }
 
 # Convert payload dictionary into a json request body
