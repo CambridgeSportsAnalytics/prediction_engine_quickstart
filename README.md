@@ -34,7 +34,7 @@ This repository is a **quickstart reference and example suite** for analysts and
 
 ```bash
 git clone https://github.com/CambridgeSportsAnalytics/prediction_engine.git
-cd preddiction_engine
+cd prediction_engine
 ```
 
 ### 2. Install Requirements
