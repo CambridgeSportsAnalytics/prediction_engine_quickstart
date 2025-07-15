@@ -81,7 +81,7 @@ This repository uses `from multiprocessing import freeze_support` to ensure cros
 - **Windows**, which always uses the `spawn` start method
 - **macOS with Apple Silicon** (M1/M2/M3/M4) when using Python installed via Homebrew, which also defaults to `spawn`
 
-While it's a no-op on most Linux systems (which use `fork` by default), including it ensures safe and consistent behavior across all platforms, especially when running our scripts and pip package that use multiprocessing or multi-threaded APIs.
+While it's a no-op on most Linux systems (which use `fork` by default), including `freeze_support()` ensures safe and consistent behavior across all platforms, especially when running our scripts and pip package that use multiprocessing or multi-threaded APIs.
 
 ### 🔁 Single vs Batch API Calls
 
