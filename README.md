@@ -100,6 +100,6 @@ pip install csa-prediction-engine
 
 Questions or issues? Please reach out to us 📧 support@csanalytics.io
 
-## License
+## ⚖️ License
 
-(c) 2023 - 2025 Cambridge Prediction Analytics, LLC. All rights reserved.
+Copyright (c) 2023 - 2025 Cambridge Prediction Analytics, LLC. All rights reserved.
