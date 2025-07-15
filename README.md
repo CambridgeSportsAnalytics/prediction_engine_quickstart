@@ -74,7 +74,7 @@ python workflows/run_with_client.py # PIP-installed client usage
 | endpoints/*.py | Endpoint-specific usage and response examples |
 | docs/api_specs/ | OpenAPI specs for each endpoint (JSON format) |
 
-## 🧊 Concurrency Notes for Cross-Platform Compatibility
+## 🧊 Concurrency Notes and Cross-Platform Compatibility
 
 This repository uses `from multiprocessing import freeze_support` to ensure cross-platform compatibility when using concurrency. This line is **required** on:
 
@@ -83,7 +83,7 @@ This repository uses `from multiprocessing import freeze_support` to ensure cros
 
 While it's a no-op on most Linux systems (which use `fork` by default), including it ensures safe and consistent behavior across all platforms, especially when running our scripts and pip package that use multiprocessing or multi-threaded APIs.
 
-## 🔁 Single vs Batch API Calls
+### 🔁 Single vs Batch API Calls
 
 The provided examples focus on single-call predictions for clarity and simplicity. For larger batch workflows (e.g. multiple prediction tasks / multiple prediction circumstances) with built-in result polling and multithreaded execution, we recommend using the official pip package:
 
