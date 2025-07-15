@@ -6,7 +6,7 @@
 
 This repository is a **quickstart reference and example suite** for analysts and developers working with the **CSA Prediction Engine API**. It includes:
 
-🔹 Endpoint specifications (OpenAPI 3.0.9)  
+🔹 Endpoint specifications (OpenAPI 3.0)  
 🔹 Example scripts for each endpoint  
 🔹 End-to-end workflows using both direct HTTP and the official pip package  
 🔹 Sample data generation and result unpacking utilities  
