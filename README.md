@@ -1,4 +1,4 @@
-# CSA Prediction Engine
+# CSA Prediction Engine - Quickstart Guide
 [![PyPI version](https://img.shields.io/pypi/v/csa-prediction-engine.svg)](https://pypi.org/project/csa-prediction-engine/)
 [![Python Version](https://img.shields.io/badge/python-%20v3.11-blue)](https://github.com/CambridgeSportsAnalytics/prediction_engine)
 [![CodeFactor](https://www.codefactor.io/repository/github/cambridgesportsanalytics/prediction_engine/badge)](https://www.codefactor.io/repository/github/cambridgesportsanalytics/prediction_engine)
