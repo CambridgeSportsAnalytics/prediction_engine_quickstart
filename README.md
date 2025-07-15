@@ -1,4 +1,5 @@
 # Prediction Engine
+[![PyPI version](https://img.shields.io/pypi/v/csa-prediction-engine.svg)](https://pypi.org/project/csa-prediction-engine/)
 
 This repository is a **quickstart reference and example suite** for analysts and developers working with the **CSA Prediction Engine API**. It includes:
 
