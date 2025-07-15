@@ -33,8 +33,8 @@ This repository is a **quickstart reference and example suite** for analysts and
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/CambridgeSportsAnalytics/prediction_engine.git
-cd prediction_engine
+git clone https://github.com/CambridgeSportsAnalytics/prediction_engine_quickstart.git
+cd prediction_engine_quickstart
 ```
 
 ### 2. Install Requirements
