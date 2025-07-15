@@ -1,28 +1,95 @@
 # Prediction Engine
 
-Welcome to Cambridge Sports Analytics' **Prediction Engine** repository. This repository is a simple, hands-on reference for developers looking to interact with our **Prediction Engine API**. 
+This repository is a **quickstart reference and example suite** for analysts and developers working with the **CSA Prediction Engine API**. It includes:
 
-The examples provided in this repository aim to help you understand how to construct and send HTTPS requests to the Prediction Engine API correctly. It is intended to give you a clear and practical understanding of the request/response flow.
+🔹 Endpoint specifications (OpenAPI 3.0.9)  
+🔹 Example scripts for each endpoint  
+🔹 End-to-end workflows using both direct HTTP and the official pip package  
+🔹 Sample data generation and result unpacking utilities  
 
-## Contents
+## 📁 Repository Structure
 
-- [docs/api_scecs](docs/api_specs): This folder contains OpenAPI 3.0 specifications for the the available API endpoints. 
-- [end_points](end_points): This folder contains code examples for each of the available API endpoints, showing how to make HTTPS requests and receive responses from the Prediction Engine API in Python. 
+```bash
+.
+├── docs/
+│   └── api_specs/            # OpenAPI 3.0 JSON specs for each endpoint
+├── endpoints/                # Python examples per endpoint
+│   ├── grid.py
+│   ├── grid_singularity.py
+│   ├── maxfit.py
+│   └── ...
+├── workflows/                # End-to-end example workflows
+│   ├── run_with_http.py      # Direct HTTP call workflow
+│   ├── run_with_client.py    # Using the official CSA pip package
+│   └── data_generation.py    # (Optional) Generates synthetic sample data
+```
 
-## Using This Repository
+## 🚀 Quickstart
 
-Begin by cloning the repository to your local machine:
+### 1. Clone the Repository
 
-```git clone https://github.com/CambridgeSportsAnalytics/prediction_engine.git```
+```bash
+git clone https://github.com/CambridgeSportsAnalytics/prediction_engine.git
+cd preddiction_engine
+```
 
-Before running the examples provided in this repository check your:
+### 2. Install Requirements
+```bash
+pip install -r requirements.txt
+```
+### 3. Set your CSA API Credentials
 
-1. **API Credentials**: You must have valid API credentials, including an `CSA_API_KEY` and a `CSA_ACCESS_ID` provided by the CSA team to authenticate requests to the Prediction Engine. These variables should be set as part of your environment variables.
-2. **Python Environment**: pip install -r requirements.txt after cloning the repo. 
+The examples require valid API creddentials:
+```python
+os.environ['CSA_ACCESS_ID'] = 'YOUR_ACCESS_ID'    # Private user token
+os.environ['CSA_API_KEY'] = 'ORG_API_KEY'         # Organization token
+```
+>You must obtain these credentials from the CSA Team. We recommend storing them securely in environment variables or a `.env` file.
 
-## Additional Notes
 
-Please note that our example scripts are making  **single** prediction calls to our prediction endpoints. If you'd like to make many calls to our API more easily, unpack results automatically and integrate results fetching by default, we suggest that you pip install the prediction engine python package. 
+## 🧪 Example Workflows
+Each script demonstrates:
+- How to generate (or import) sample data
+- How to call the CSA Prediction Engine via
+  - Direct HTTP request (`requests`)
+  - Official pip package client ([csa-prediction-engine](https://pypi.org/project/csa-prediction-engine/))
+- How to unpack and interpret results
+
+Run either workflow:
+```bash
+python workflows/run_with_http.py # Direct HTTP call
+python workflows/run_with_client.py # PIP-installed client usage
+```
+
+## 📦 Key Files
+| File | Description |
+| :--- | :---|
+| run_with_http.py | Makes raw HTTP calls using requests |
+| run_with_client.py | Uses pip package to submit & manage jobs |
+| data_generation.py | Synthetic data utility for input creation |
+| endpoints/*.py | Endpoint-specific usage and response examples |
+| docs/api_specs/ | OpenAPI specs for each endpoint (JSON format) |
+
+## 🧊 Concurrency Notes for Cross-Platform Compatibility
+
+This repository uses `from multiprocessing import freeze_support` to ensure cross-platform compatibility when using concurrency. This line is **required** on:
+
+- **Windows**, which always uses the `spawn` start method
+- **macOS with Apple Silicon** (M1/M2/M3/M4) when using Python installed via Homebrew, which also defaults to `spawn`
+
+While it's a no-op on most Linux systems (which use `fork` by default), including it ensures safe and consistent behavior across all platforms, especially when running our scripts and pip package that use multiprocessing or multi-threaded APIs.
+
+## 🔁 Single vs Batch API Calls
+
+The provided examples focus on single-call predictions for clarity and simplicity. For larger batch workflows (e.g. multiple prediction tasks / multiple prediction circumstances) with built-in result polling and multithreaded execution, we recommend using the official pip package:
+
+```bash
+pip install csa-prediction-engine
+```
+
+## 📬 Support
+
+Questions or issues? 📧 support@csanalytics.io
 
 ## License
 
