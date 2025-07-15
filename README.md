@@ -26,4 +26,4 @@ Please note that our example scripts are making  **single** prediction calls to 
 
 ## License
 
-(c) 2023 - 2024 Cambridge Sports Analytics, LLC. All rights reserved.
+(c) 2023 - 2025 Cambridge Sports Analytics, LLC. All rights reserved.
