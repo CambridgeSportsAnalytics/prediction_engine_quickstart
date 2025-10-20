@@ -64,7 +64,7 @@
                     {
                         "lang": "Python",
                         "label": "Python Example",
-                        "source": "import requests\nimport json\n\nurl = \"https://api.csanalytics.io/v2/prediction-engine/grid\"\n\npayload = {\n    \"y\": [[18.8], [2.3], [3.0], [6.7], [15.2], [20.9], [4.0]],\n    \"X\": [[25.0, 2.0, 76.0, 53.7, 23.1], [29.0, 1.0, 78.0, 39.1, 5.7], [32.0, 2.0, 77.0, 54.1, 5.3], [30.0, 5.0, 82.0, 68.7, 8.7], [24.0, 1.0, 69.0, 51.0, 20.3], [25.0, 2.0, 79.0, 50.2, 20.0], [35.0, 3.0, 80.0, 51.5, 9.4]],\n    \"theta\": [[24.0, 5.0, 81.0, 60.0, 11.0]],\n    \"threshold_range\": [0, 0.20, 0.50, 0.80],\n    \"is_threshold_percent\": true,\n    \"most_eval\": true,\n    \"eval_type\": \"both\",\n    \"stepsize\": 0.2,\n    \"attribute_combi\": null,\n    \"k\": 1\n}\n\nheaders = {\n  'x-api-key': 'CSA_API_KEY',\n  'Content-Type': 'application/json',\n  'Connection': 'keep-alive'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=json.dumps(payload))\n\nprint(response.text)"
+                        "source": "import requests\nimport json\n\nurl = \"https://api.csanalytics.io/v2/prediction-engine/grid\"\n\npayload = {\n    \"y\": [[18.8], [2.3], [3.0], [6.7], [15.2], [20.9], [4.0]],\n    \"X\": [[25.0, 2.0, 76.0, 53.7, 23.1], [29.0, 1.0, 78.0, 39.1, 5.7], [32.0, 2.0, 77.0, 54.1, 5.3], [30.0, 5.0, 82.0, 68.7, 8.7], [24.0, 1.0, 69.0, 51.0, 20.3], [25.0, 2.0, 79.0, 50.2, 20.0], [35.0, 3.0, 80.0, 51.5, 9.4]],\n    \"theta\": [[24.0, 5.0, 81.0, 60.0, 11.0]],\n    \"threshold\": [0, 0.20, 0.50, 0.80],\n    \"is_threshold_percent\": true,\n    \"most_eval\": true,\n    \"eval_type\": \"both\",\n    \"attribute_combi\": null,\n    \"k\": 1\n}\n\nheaders = {\n  'x-api-key': 'CSA_API_KEY',\n  'Content-Type': 'application/json',\n  'Connection': 'keep-alive'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=json.dumps(payload))\n\nprint(response.text)"
                     }
                 ]
             }
@@ -119,7 +119,7 @@
                     {
                         "lang": "Python",
                         "label": "Python Example",
-                        "source": "import requests\nimport json\n\nurl = \"https://api.csanalytics.io/v2/prediction-engine/maxfit\"\n\npayload = {\n    \"y\": [[18.8], [2.3], [3.0], [6.7], [15.2], [20.9], [4.0]],\n    \"X\": [[25.0, 2.0, 76.0, 53.7, 23.1], [29.0, 1.0, 78.0, 39.1, 5.7], [32.0, 2.0, 77.0, 54.1, 5.3], [30.0, 5.0, 82.0, 68.7, 8.7], [24.0, 1.0, 69.0, 51.0, 20.3], [25.0, 2.0, 79.0, 50.2, 20.0], [35.0, 3.0, 80.0, 51.5, 9.4]],\n    \"theta\": [[24.0, 5.0, 81.0, 60.0, 11.0]],\n    \"threshold_range\": [0, 0.20, 0.50, 0.80],\n    \"is_threshold_percent\": true,\n    \"most_eval\": true,\n    \"eval_type\": \"both\",\n    \"stepsize\": 0.2\n}\n\nheaders = {\n  'x-api-key': 'CSA_API_KEY',\n  'Content-Type': 'application/json',\n  'Connection': 'keep-alive'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=json.dumps(payload))\n\nprint(response.text)"
+                        "source": "import requests\nimport json\n\nurl = \"https://api.csanalytics.io/v2/prediction-engine/maxfit\"\n\npayload = {\n    \"y\": [[18.8], [2.3], [3.0], [6.7], [15.2], [20.9], [4.0]],\n    \"X\": [[25.0, 2.0, 76.0, 53.7, 23.1], [29.0, 1.0, 78.0, 39.1, 5.7], [32.0, 2.0, 77.0, 54.1, 5.3], [30.0, 5.0, 82.0, 68.7, 8.7], [24.0, 1.0, 69.0, 51.0, 20.3], [25.0, 2.0, 79.0, 50.2, 20.0], [35.0, 3.0, 80.0, 51.5, 9.4]],\n    \"theta\": [[24.0, 5.0, 81.0, 60.0, 11.0]],\n    \"is_threshold_percent\": true,\n    \"most_eval\": true,\n    \"eval_type\": \"both\",\n}\n\nheaders = {\n  'x-api-key': 'CSA_API_KEY',\n  'Content-Type': 'application/json',\n  'Connection': 'keep-alive'\n}\n\nresponse = requests.request(\"POST\", url, headers=headers, data=json.dumps(payload))\n\nprint(response.text)"
                     }
                 ]
             }
@@ -227,7 +227,7 @@
                     {
                         "lang": "Python",
                         "label": "Python Example",
-                        "source": "import requests\nimport json\n\nurl = \"https://api.csanalytics.io/v2/prediction-engine/psr\"\n\npayload = {\n    \"job_id\": 1074]\n    \"job_code\": \"66cfc21f7effa501\"\n}\n\nheaders = {\n  'x-api-key': 'CSA_API_KEY',\n  'Content-Type': 'application/json',\n  'Connection': 'keep-alive'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=json.dumps(payload))\n\nprint(response.text)"
+                        "source": "import requests\nimport json\n\nurl = \"https://api.csanalytics.io/v2/prediction-engine/psr\"\n\npayload = {\n    \"job_id\": 1074,\n    \"job_code\": \"66cfc21f7effa501\"\n}\n\nheaders = {\n  'x-api-key': 'CSA_API_KEY',\n  'Content-Type': 'application/json',\n  'Connection': 'keep-alive'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=json.dumps(payload))\n\nprint(response.text)"
                     }
                 ]
             }
@@ -326,17 +326,17 @@
                     "threshold": {
                             "type": "number",
                             "description": "Threshold to evaluate the censor function (relevance or similarity). Float or [1-by-T], if not specified then the model will evaluate across thresholds from [0, 0.99) in 0.20 increments.",
-                            "default": null
+                            "default": null,
+                            "example": 0.5
                     }
-                },
-                "example": 0.5
+                }
             },
             "psr_options": {
                 "type" : "object",
                 "properties": {
                     "is_threshold_percent": {
                         "type": "boolean",
-                        "description": "Specify whether the threshold range specified is in percentage (decimal) units.",
+                        "description": "Specify whether the thresholds specified is in percentage (decimal) units.",
                         "default": true,
                         "example": true
                     },
@@ -358,21 +358,15 @@
             "maxfit_options": {
                 "type": "object",
                 "properties": {
-                    "threshold_range": {
+                    "threshold": {
                         "type": "array",
-                        "description": "Min/max range for evaluating the maxfit threshold. Specify a min/max tuple or explicitly specify a vector of thresholds. [1-by-2] or [1-by-T]",
+                        "description": "Threshold to evaluate the censor function (relevance or similarity). Array of threshold values, if not specified then the model will evaluate across thresholds [0.0, 0.2, 0.5, 0.8].",
                         "items": {
                             "type": "number",
                             "format": "float"
                         },
                         "default": [0, 0.20, 0.50, 0.80],
-                        "example": [[0, 0.20, 0.50, 0.80]]
-                    },
-                    "stepsize": {
-                        "type": "number",
-                        "description": "Step size used to evaluate the range of thresholds. A smaller step size increases grid resolution, providing more precision. This option is ignored if an explicit threshold_range is provided instead of a min/max tuple.",
-                        "default": 0.20,
-                        "example": 0.20
+                        "example": [0, 0.20, 0.50, 0.80]
                     }
                 }
             },
@@ -456,8 +450,7 @@
                         "items": {
                             "type": "array",
                             "items": {
-                                "type": "number",
-                                "format": "integer"
+                                "type": "integer"
                             }
                         },
                         "example": [[0],[1],[0],[1],[0],[0],[0]]
@@ -512,7 +505,7 @@
                     },
                     "asymmetry": {
                         "type": "array",
-                        "description": "Measure of asymmetry [1-by-1]. This measures describes ",
+                        "description": "Measure of asymmetry [1-by-1]. This measure describes the asymmetry in the relationship between relevance and outcomes.",
                         "items": {
                             "type": "array",
                             "items": {

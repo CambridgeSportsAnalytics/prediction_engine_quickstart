@@ -333,7 +333,7 @@
                 "properties": {
                     "is_threshold_percent": {
                         "type": "boolean",
-                        "description": "Specify whether the threshold range specified is in percentage (decimal) units.",
+                        "description": "Specify whether the thresholds specified is in percentage (decimal) units.",
                         "default": true,
                         "example": true
                     },
@@ -355,21 +355,15 @@
             "maxfit_options": {
                 "type": "object",
                 "properties": {
-                    "threshold_range": {
+                    "threshold": {
                         "type": "array",
-                        "description": "Min/max range for evaluating the maxfit threshold. Specify a min/max tuple or explicitly specify a vector of thresholds. [1-by-2] or [1-by-T]",
+                        "description": "Threshold to evaluate the censor function (relevance or similarity). Array of threshold values, if not specified then the model will evaluate across thresholds [0.0, 0.2, 0.5, 0.8].",
                         "items": {
                             "type": "number",
                             "format": "float"
                         },
                         "default": [0, 0.20, 0.50, 0.80],
                         "example": [0, 0.20, 0.50, 0.80]
-                    },
-                    "stepsize": {
-                        "type": "number",
-                        "description": "Step size used to evaluate the range of thresholds. A smaller step size increases grid resolution, providing more precision. This option is ignored if an explicit threshold_range is provided instead of a min/max tuple.",
-                        "default": 0.20,
-                        "example": 0.20
                     }
                 }
             },
@@ -531,7 +525,7 @@
                                 "format": "float"
                             }
                         },
-                        "example": "[[7.145171]]"
+                        "example": [[7.145171]]
                     }
                 }
             }
