@@ -224,7 +224,7 @@
                     {
                         "lang": "Python",
                         "label": "Python Example",
-                        "source": "import requests\nimport json\n\nurl = \"https://api.csanalytics.io/v2/prediction-engine/psr\"\n\npayload = {\n    \"job_id\": 1074\n    \"job_code\": \"66cfc21f7effa501\"\n}\n\nheaders = {\n  'x-api-key': 'CSA_API_KEY',\n  'Content-Type': 'application/json',\n  'Connection': 'keep-alive'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=json.dumps(payload))\n\nprint(response.text)"
+                        "source": "import requests\nimport json\n\nurl = \"https://api.csanalytics.io/v2/prediction-engine/results\"\n\npayload = {\n    \"job_id\": 1074,\n    \"job_code\": \"66cfc21f7effa501\"\n}\n\nheaders = {\n  'x-api-key': 'CSA_API_KEY',\n  'Content-Type': 'application/json',\n  'Connection': 'keep-alive'\n}\n\nresponse = requests.request(\"GET\", url, headers=headers, data=json.dumps(payload))\n\nprint(response.text)"
                     }
                 ]
             }
@@ -321,16 +321,29 @@
                 "type": "object",
                 "properties": {
                     "threshold": {
-                            "type": "number",
-                            "description": "Threshold to evaluate the censor function (relevance or similarity). Float or [1-by-T], if not specified then the model will evaluate across thresholds from [0, 0.99) in 0.20 increments.",
-                            "default": null,
-                            "example": 0.5
+                        "oneOf": [
+                            { "type": "number", "description": "Single threshold value" },
+                            {
+                                "type": "array",
+                                "description": "Array of threshold values [1-by-T]",
+                                "items": { "type": "number", "format": "float" }
+                            }
+                        ],
+                        "description": "Threshold(s) to evaluate the censor function (relevance or similarity). Accepts a single number or an array of values. For PSR, if not specified, the model evaluates across thresholds from [0, 0.99) in 0.20 increments.",
+                        "default": null,
+                        "example": 0.5
                     }
                 }
             },
             "psr_options": {
                 "type" : "object",
                 "properties": {
+                    "verify_missing_data": {
+                        "type": "boolean",
+                        "description": "Affects how mean and covariance are computed. When true, uses only complete rows (observations with no missing values) for mean and covariance. When false, mean and covariance use nan-aware methods (column-wise nanmean, pairwise valid counts). In both modes, rows with missing values receive zero prediction weight because relevance cannot be computed for them.",
+                        "default": false,
+                        "example": false
+                    },
                     "is_threshold_percent": {
                         "type": "boolean",
                         "description": "Specify whether the thresholds specified is in percentage (decimal) units.",
@@ -357,7 +370,7 @@
                 "properties": {
                     "threshold": {
                         "type": "array",
-                        "description": "Threshold to evaluate the censor function (relevance or similarity). Array of threshold values, if not specified then the model will evaluate across thresholds [0.0, 0.2, 0.5, 0.8].",
+                        "description": "Array of threshold values to evaluate the censor function (relevance or similarity). For maxfit and grid, users typically specify an array of thresholds. If not specified, the default is [0, 0.20, 0.50, 0.80].",
                         "items": {
                             "type": "number",
                             "format": "float"
@@ -526,6 +539,124 @@
                             }
                         },
                         "example": [[7.145171]]
+                    },
+                    "contribution_to_prediction": {
+                        "type": "array",
+                        "description": "Marginal contribution per variable. [1-by-K]. Applicable for grid predictions.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        },
+                        "example": [0.188679, 0.232704, 0.194969, 0.308176, 0.075472]
+                    },
+                    "contribution_to_conviction": {
+                        "type": "array",
+                        "description": "Marginal contribution per variable. [1-by-K]. Applicable for grid predictions.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        },
+                        "example": [0.326091, 0.098205, 0.205904, 0.189534, 0.187681]
+                    },
+                    "marginal_contribution_to_prediction": {
+                        "type": "array",
+                        "description": "Marginal contribution per variable (same as contribution_to_prediction). [1-by-K]. Applicable for grid predictions.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "marginal_contribution_to_conviction": {
+                        "type": "array",
+                        "description": "Marginal contribution per variable (same as contribution_to_conviction). [1-by-K]. Applicable for grid predictions.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "component_contribution_to_prediction": {
+                        "type": "array",
+                        "description": "Component contribution to prediction. [1-by-K]. Applicable for grid predictions.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "ysolo_sigma": {
+                        "type": "array",
+                        "description": "Adjusted variance of y_solo. [1-by-1]. Applicable for grid predictions.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        },
+                        "example": [[0.102385]]
+                    },
+                    "ysolo_skewness": {
+                        "type": "array",
+                        "description": "Distribution statistic (skewness) of y_solo. [1-by-1]. Applicable for grid predictions.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "ysolo_kurtosis": {
+                        "type": "array",
+                        "description": "Distribution statistic (kurtosis) of y_solo. [1-by-1]. Applicable for grid predictions.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "ysolo_pearson_modality_index": {
+                        "type": "array",
+                        "description": "Pearson modality index of y_solo distribution. [1-by-1]. Applicable for grid predictions.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "ysolo_bimodality_coefficient": {
+                        "type": "array",
+                        "description": "Bimodality coefficient of y_solo distribution. [1-by-1]. Applicable for grid predictions.",
+                        "items": {
+                            "type": "array",
+                            "items": {
+                                "type": "number",
+                                "format": "float"
+                            }
+                        }
+                    },
+                    "experiment_id": {
+                        "type": "integer",
+                        "description": "Experiment or batch identification number, when the job was submitted as part of an experiment.",
+                        "example": 42
                     }
                 }
             }
